@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f7fa;
 }
 
 .dashboard-container {
@@ -13,7 +14,7 @@ body {
 
 .sidebar {
   width: 250px;
-  background-color: #001f3f;
+  background-color: #154d84;
   color: white;
   height: 100vh;
   display: flex;
@@ -73,7 +74,6 @@ body {
 .main-content {
   flex-grow: 1;
   padding: 20px;
-  background-color: #f4f7fa;
 }
 
 .main-content header {
@@ -95,6 +95,7 @@ body {
   display: flex;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-top: 20px;
 }
 
 .course-icon {
@@ -119,6 +120,7 @@ body {
 .course-details span {
   font-size: 0.8rem;
   color: #6c757d;
+  text-transform: uppercase;
 }
 
 .course-details h3 {

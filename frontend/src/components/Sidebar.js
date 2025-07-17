@@ -8,7 +8,8 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="logo">
-        <img src={alpsLogo} alt="ALPS Logo" />
+        {<img src={alpsLogo} alt="ALPS Logo" />}
+        <h3>ALPS</h3>
       </div>
       <nav>
         <ul>
@@ -18,7 +19,7 @@ const Sidebar = () => {
         </ul>
       </nav>
       <div className="sidebar-footer">
-         <img src={alpsLogo} alt="ALPS Logo" />
+         {<img src={alpsLogo} alt="ALPS Logo" />}
          <p>Your preferred training and growth partner</p>
       </div>
     </div>
