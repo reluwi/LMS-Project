@@ -1,0 +1,22 @@
+### Get all courses (initially should be an empty array)
+GET http://localhost:5000/api/courses
+
+###
+### Create a new course
+POST http://localhost:5000/api/courses
+Content-Type: application/json
+
+{
+  "title": "Introduction to Node.js",
+  "duration": "2 hours"
+}
+
+###
+### Create another course
+POST http://localhost:5000/api/courses
+Content-Type: application/json
+
+{
+  "title": "Mastering React Hooks",
+  "duration": "1.5 hours"
+}
