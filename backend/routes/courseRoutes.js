@@ -1,11 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const { getCourses, setCourse } = require('../controllers/courseController');
 
-// Route for getting all courses
-router.get('/', getCourses);
+const { getCourses, 
+        setCourse, 
+        updateCourse, 
+        deleteCourse, 
+} = require('../controllers/courseController');
 
-// Route for creating a new course
-router.post('/', setCourse);
+const { protect } = require('../middleware/authMiddleware');
+
+// GET is public, anyone can see courses
+// POST requires a token (you must be logged in to create a course)
+router.route('/').get(getCourses).post(protect, setCourse);
+
+// PUT and DELETE require a token
+router.route('/:id').delete(protect, deleteCourse).put(protect, updateCourse);
 
 module.exports = router;

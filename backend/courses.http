@@ -1,22 +1,49 @@
+###
+### ===================
+### AUTHENTICATION
+### ===================
+
+### 1. Register a new user (do this only once)
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+  "name": "Admin User",
+  "email": "admin@example.com",
+  "password": "password123"
+}
+
+###
+### 2. Login as the user to get a token
+# @name login
+POST http://localhost:5000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "password123"
+}
+
+###
+### ===================
+### SECURE ACTIONS
+### ===================
+
+# Let's get the ID of a course to delete
+# Run the GET request at the top of the file to see existing courses and copy an ID.
+@course_id = 68789fe023c8481ed6ed2cb8
+
+# This token is captured from the login request's response above
+@token = {{login.response.body.token}}
+
+
+### 3. Attempt to DELETE a course WITHOUT the token (SHOULD FAIL)
+DELETE http://localhost:5000/api/courses/{{course_id}}
+
+
+### 4. Attempt to DELETE a course WITH the token (SHOULD SUCCEED)
+DELETE http://localhost:5000/api/courses/{{course_id}}
+Authorization: Bearer {{token}}
+
 ### Get all courses (initially should be an empty array)
 GET http://localhost:5000/api/courses
-
-###
-### Create a new course
-POST http://localhost:5000/api/courses
-Content-Type: application/json
-
-{
-  "title": "Introduction to Node.js",
-  "duration": "2 hours"
-}
-
-###
-### Create another course
-POST http://localhost:5000/api/courses
-Content-Type: application/json
-
-{
-  "title": "Mastering React Hooks",
-  "duration": "1.5 hours"
-}
