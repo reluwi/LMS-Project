@@ -31,7 +31,7 @@ Content-Type: application/json
 
 # Let's get the ID of a course to delete
 # Run the GET request at the top of the file to see existing courses and copy an ID.
-@course_id = 687a2b39fa8b0f76f0fa2ff8
+@course_id = 687a5b3f3f212dd591e29a46
 
 # This token is captured from the login request's response above
 @token = {{login.response.body.token}}
@@ -53,9 +53,9 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "code": "CODE 042 | Leadership Fundamentals",
+  "code": "CODE 043 | React for Beginners",
   "description": "Develop core leadership skills for managing and motivating teams effectively.",
-  "progress": 0
+  "progress": 30
 }
 
 ### Get all courses (initially should be an empty array)
