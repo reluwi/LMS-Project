@@ -12,14 +12,18 @@ const getCourses = async (req, res) => {
 // @route   POST /api/courses
 // @access  Private
 const setCourse = async (req, res) => {
-  if (!req.body.title || !req.body.duration) {
+  // Check for the new required fields from the model
+  if (!req.body.code || !req.body.description) {
     res.status(400);
-    throw new Error('Please add a title and duration');
+    // Send a more helpful error message
+    throw new Error('Please add a course code and a description');
   }
 
+  // Create a new course using the correct fields
   const course = await Course.create({
-    title: req.body.title,
-    duration: req.body.duration,
+    code: req.body.code,
+    description: req.body.description,
+    progress: req.body.progress || 0, // Use provided progress or default to 0
   });
 
   res.status(201).json(course); // 201 means something was created

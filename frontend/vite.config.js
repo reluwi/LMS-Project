@@ -14,4 +14,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      // Requests to any path starting with /api will be sent to the backend.
+      '/api': {
+        target: 'http://localhost:5000', // Your Express server's address
+        changeOrigin: true, // Necessary for virtual-hosted sites
+      },
+    }
+  }
 })
+

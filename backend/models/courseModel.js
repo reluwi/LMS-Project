@@ -2,23 +2,23 @@ const mongoose = require('mongoose');
 
 const courseSchema = mongoose.Schema(
   {
-    // We'll link this to a user later, for now it's simple
-    // user: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   required: true,
-    //   ref: 'User',
-    // },
-    title: {
+    code: {
       type: String,
-      required: [true, 'Please add a title for the course'],
+      required: [true, 'Please add a course code'], // e.g., "CODE 020 | Presentation Skills"
     },
-    duration: {
+    description: {
       type: String,
-      required: [true, 'Please add a duration'],
+      required: [true, 'Please add a description'],
     },
+    progress: {
+      type: Number,
+      required: true,
+      default: 0, // A new course starts with 0 progress
+    },
+    // We can add bannerImageURL, etc. later
   },
   {
-    timestamps: true, // This automatically adds `createdAt` and `updatedAt` fields
+    timestamps: true,
   }
 );
 
