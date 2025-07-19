@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const courseSchema = mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User', // This tells Mongoose which model the ObjectId refers to.
+    },
     code: {
       type: String,
       required: [true, 'Please add a course code'], // e.g., "CODE 020 | Presentation Skills"

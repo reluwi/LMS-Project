@@ -9,11 +9,8 @@ const { getCourses,
 
 const { protect } = require('../middleware/authMiddleware');
 
-// GET is public, anyone can see courses
-// POST requires a token (you must be logged in to create a course)
-router.route('/').get(getCourses).post(protect, setCourse);
-
-// PUT and DELETE require a token
+// ALL course routes should be protected.
+router.route('/').get(protect, getCourses).post(protect, setCourse);
 router.route('/:id').delete(protect, deleteCourse).put(protect, updateCourse);
 
 module.exports = router;

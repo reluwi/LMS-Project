@@ -8,8 +8,8 @@ POST http://localhost:5000/api/users
 Content-Type: application/json
 
 {
-  "name": "Admin User",
-  "email": "admin@example.com",
+  "name": "Admin User2",
+  "email": "admin2@example.com",
   "password": "password123"
 }
 
@@ -60,3 +60,4 @@ Authorization: Bearer {{token}}
 
 ### Get all courses (initially should be an empty array)
 GET http://localhost:5000/api/courses
+Authorization: Bearer {{token}}

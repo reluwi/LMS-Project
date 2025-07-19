@@ -4,7 +4,8 @@ const Course = require('../models/courseModel');
 // @route   GET /api/courses
 // @access  Private (for now, we'll make it public for testing)
 const getCourses = async (req, res) => {
-  const courses = await Course.find(); // Fetches all courses from the database
+  // Only find courses where the 'user' field matches the logged-in user's ID.
+  const courses = await Course.find({ user: req.user.id });
   res.status(200).json(courses);
 };
 
@@ -24,6 +25,7 @@ const setCourse = async (req, res) => {
     code: req.body.code,
     description: req.body.description,
     progress: req.body.progress || 0, // Use provided progress or default to 0
+    user: req.user.id,
   });
 
   res.status(201).json(course); // 201 means something was created
@@ -40,11 +42,11 @@ const updateCourse = async (req, res) => {
     throw new Error('Course not found');
   }
 
-  // Note: We can add logic here to check if the logged-in user owns the course
-  // if (course.user.toString() !== req.user.id) {
-  //   res.status(401);
-  //   throw new Error('User not authorized');
-  // }
+  // Check if the logged-in user owns the course
+  if (course.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error('User not authorized');
+  }
 
   const updatedCourse = await Course.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -64,11 +66,11 @@ const deleteCourse = async (req, res) => {
     throw new Error('Course not found');
   }
 
-  // Note: We can add logic here to check if the logged-in user owns the course
-  // if (course.user.toString() !== req.user.id) {
-  //   res.status(401);
-  //   throw new Error('User not authorized');
-  // }
+  // Check if the logged-in user owns the course
+  if (course.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error('User not authorized');
+  }
   
   await course.deleteOne();
 
