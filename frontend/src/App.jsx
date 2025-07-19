@@ -8,6 +8,10 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import CoursesLayout from "./pages/CoursesLayout";
 import MyLibrary from "./pages/MyLibrary";
+import Modules from "./pages/Modules";
+import FundamentalsOfCyber from "./pages/FundamentalsOfCyber";
+import FOCModule1Lesson1 from "./pages/lessons/FOCModule1Lesson1";
+import FOCModule1Lesson2 from "./pages/lessons/FOCModule1Lesson2";
 
 // --- Placeholder Page Components ---
 const ProgramIntroduction = () => (
@@ -18,11 +22,6 @@ const ProgramIntroduction = () => (
 const Assignments = () => (
   <div className="p-4">
     <h1 className="text-2xl font-bold">Assignments</h1>
-  </div>
-);
-const Modules = () => (
-  <div className="p-4">
-    <h1 className="text-2xl font-bold">Modules</h1>
   </div>
 );
 const ProgramOutline = () => (
@@ -61,8 +60,14 @@ function App() {
           <Route path="introduction" element={<ProgramIntroduction />} />
           <Route path="assignments" element={<Assignments />} />
           <Route path="modules" element={<Modules />} />
+          {/* --- Course: Fundamentals of Cybersecurity --- */}
+          <Route path="modules/fundamentals" element={<FundamentalsOfCyber />} />
+          <Route path="modules/fundamentals/lesson1" element={<FOCModule1Lesson1 />} />
+          <Route path="modules/fundamentals/lesson2" element={<FOCModule1Lesson2 />} />
+
           <Route path="outline" element={<ProgramOutline />} />
           <Route path="requirements" element={<CompletionRequirements />} />
+
         </Route>
       </Route>
     </Routes>
