@@ -1,32 +1,32 @@
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { Bell, User } from "lucide-react" // For icons
+import { NavLink } from "react-router-dom";
+import { Bell, User } from "lucide-react";
+import logo from "../assets/logo.png";
 
 function Navbar() {
+  const getNavLinkClasses = ({ isActive }) =>
+    `rounded-full flex-1 text-center text-sm font-medium py-1.5 transition-colors duration-200 ${
+      isActive
+        ? "bg-slate-800 text-white shadow-inner"
+        : "text-gray-600 hover:text-black"
+    }`;
+
   return (
-    <nav className="bg-white shadow-sm border-b px-6 py-4">
+    <nav className="bg-white shadow-sm border-b px-6 py-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-6">
-          {/* Logo */}
-          <div className="flex items-center">
-            <img 
-              src="/src/assets/logo.png" 
-              alt="ALPS Logo" 
-              className="h-8 w-auto"
-            />
-          </div>
+          <img src={logo} alt="ALPS Logo" className="h-8 w-auto" />
 
-          {/* Toggle Navigation */}
-          <ToggleGroup type="single" defaultValue="home" className="bg-gray-100 rounded-full p-2 w-64 flex">
-            <ToggleGroupItem value="home" className="rounded-full data-[state=on]:bg-slate-800 data-[state=on]:text-white flex-1 text-center" style={{borderRadius: '24px'}}>
+          <div className="bg-gray-100 rounded-full p-1 w-64 flex">
+            <NavLink to="/" className={getNavLinkClasses} end>
               Dashboard
-            </ToggleGroupItem>
-            <ToggleGroupItem value="learn" className="rounded-full data-[state=on]:bg-slate-800 data-[state=on]:text-white flex-1 text-center" style={{borderRadius: '24px'}}>
+            </NavLink>
+
+            <NavLink to="/courses" className={getNavLinkClasses}>
               Courses
-            </ToggleGroupItem>
-          </ToggleGroup>
+            </NavLink>
+          </div>
         </div>
 
-        {/* Right side icons */}
         <div className="flex items-center space-x-4">
           <Bell className="h-5 w-5 text-gray-600 cursor-pointer hover:text-gray-800" />
           <div className="bg-slate-800 rounded-full p-2">
@@ -35,7 +35,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
